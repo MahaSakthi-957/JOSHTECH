@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTGeats - Home Kitchen</title>
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: #1AC073;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav a:hover {
+    opacity: 0.8;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-icon {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1AC073;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.header-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Hero Section */
+.hero {
+    background: #1AC073;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    flex: 1;
+    margin-left: 100px;
+    max-width: 500px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-search {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.hero-search input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.hero-search input::placeholder {
+    color: #999;
+}
+
+.hero-search button {
+    background: #F3BA00;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hero-search button:hover {
+    background: #e6a800;
+}
+
+.hero-illustration {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section */
+.section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Home Kitchen Grid */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.food-card {
+    background: white;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 280px;
+    position: relative;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.discount-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff4444;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.food-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #F3BA00;
+}
+
+.card-rating span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-price {
+    color: #1AC073;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.delivery-time {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.add-button {
+    background: #ffd700;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+/* Popular Items Carousel */
+.carousel-container {
+    position: relative;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.carousel-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.carousel-item .card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rating-box {
+    display: none;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #F3BA00;
+}
+
+.card-rating span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-price {
+    color: #1AC073;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.add-button {
+    background: #ffd700;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1AC073;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    z-index: 50;
+}
+
+.carousel-nav:hover {
+    background: #2EBF91;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 0;
+}
+
+.carousel-nav.next {
+    right: 0;
+}
+
+.carousel-nav.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.request-dish-btn {
+    background: #1AC073;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 1rem auto;
+    display: block;
+}
+
+.request-dish-btn:hover {
+    background: #2EBF91;
+}
+
+/* Video Section */
+.video-section {
+    background: linear-gradient(to bottom, #ffffff 50%, #d0e8d0 50%);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.video-container {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 192, 115, 0.9);
+    color: white;
+    border: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.play-overlay:hover {
+    background: rgba(26, 192, 115, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Newsletter */
+.newsletter {
+    background: #f9fbf9;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.newsletter-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.newsletter-text {
+    flex: 1;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.newsletter-form {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0;
+}
+
+.newsletter-form1 {
+    padding: 10px;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0;
+}
+
+.text-heading {
+    padding-left: 15px;
+}
+
+.newsletter-form input,
+.newsletter-form textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.newsletter-form1 textarea {
+    width: 125%;
+    height: 175px;
+    resize: vertical;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.newsletter-form1 button {
+    background-color: #28a745;
+    color: white;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.newsletter-image {
+    flex: 1;
+    text-align: right;
+}
+
+.newsletter-image img {
+    height: 200px;
+}
+
+/* Footer */
+.footer {
+    background: #1AC073;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    background: #F2F2F2;
+    color: #333;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background: #1AC073;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .hero-content {
+        margin-left: 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-item {
+        flex: 0 0 280px;
+    }
+
+    .carousel-nav.prev {
+        left: 10px;
+    }
+
+    .carousel-nav.next {
+        right: 10px;
+    }
+
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .newsletter-text {
+        text-align: center;
+    }
+
+    .newsletter-image {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        flex: 0 0 250px;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .newsletter-form {
+        max-width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">JTGeats</div>
+        <nav>
+            <ul class="nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="header-icon">🔍</div>
+            <div class="header-icon">🛒</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Authentic Home food in India</h1>
+            <p class="hero-subtitle">JTEeats is a courier service in which authentic home cook food is delivered to a customer.</p>
+            <div class="hero-search">
+                <input type="text" placeholder="Search food you love">
+                <button type="button">Search</button>
+            </div>
+        </div>
+        <div class="hero-illustration">
+            <img src="./Assests/hero-img.png" style="height: 500px;">
+        </div>
+    </section>
+
+    <!-- Home Kitchen Section -->
+    
+
+    <!-- Home Kitchen Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Home Kitchen</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://images7.alphacoders.com/129/1290221.jpg" alt="Home made pizza">
+                    <div class="card-content">
+                         <h3 class="card-title">Home made pizza</h3>
+                         <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.7
+                                <span>(50-79 min)</span>
+                            </div>
+                            <div class="card-price">₹190</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="discount-tag">20%</div>
+                    <img src="https://bakerbynature.com/wp-content/uploads/2017/02/untitled-18-of-84-3.jpg" alt="Fluffy Pancakes">
+                    <div class="card-content">
+                        <h3 class="card-title">Fluffy Pancakes</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.8
+                                <span>(30-50 min)</span>
+                            </div>
+                            <div class="card-price">₹199</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://t3.ftcdn.net/jpg/06/01/41/68/360_F_601416862_AfYdeefqT1kGqWTx1DZCsJZVzYIDFzPR.jpg" alt="Spicy Curry">
+                    <div class="card-content">
+                        <h3 class="card-title">Spicy Curry</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.7
+                                <span>(40-60 min)</span>
+                            </div>
+                            <div class="card-price">₹249</div>
+                        </div>
+                         <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://t4.ftcdn.net/jpg/09/12/10/25/360_F_912102578_dpR2r8IstjbBzQWgn2dAegf6SE2gDPNT.jpg" alt="Chicken Biryani">
+                    <div class="card-content">
+                        <h3 class="card-title">Chicken Biryani</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.9
+                                <span>(50-70 min)</span>
+                            </div>
+                            <div class="card-price">₹349</div>
+                        </div>
+                         <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://thumbs.dreamstime.com/b/fresh-vegetables-greek-salad-healthy-food-wooden-background-136132255.jpg" alt="Fresh Salad">
+                    <div class="card-content">
+                        <h3 class="card-title">Fresh Salad</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.3
+                                <span>(20-40 min)</span>
+                            </div>
+                            <div class="card-price">₹149</div>
+                        </div>
+                         <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://i.pinimg.com/736x/c9/4a/ff/c94affe6bcb9fbf7d3508ba98977a1d1.jpg" alt="Gourmet Burger">
+                    <div class="card-content">
+                        <h3 class="card-title">Gourmet Burger</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.6
+                                <span>(30-50 min)</span>
+                            </div>
+                            <div class="card-price">₹279</div>
+                        </div>
+                         <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1694708455249-992010f9db32?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmFtZW58ZW58MHx8MHx8fDA%3D" alt="Spicy Ramen">
+                    <div class="card-content">
+                        <h3 class="card-title">Spicy Ramen</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.4
+                                <span>(40-60 min)</span>
+                            </div>
+                            <div class="card-price">₹229</div>
+                        </div>
+                         <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://images.unsplash.com/photo-1605807646983-377bc5a76493?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNob2NvbGF0ZSUyMGNha2V8ZW58MHx8MHx8fDA%3D" alt="Chocolate Cake">
+                    <div class="card-content">
+                        <h3 class="card-title">Chocolate Cake</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.8
+                                <span>(30-50 min)</span>
+                            </div>
+                            <div class="card-price">₹189</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Request Special Dish</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="dishName">Dish Name</label>
+                    <input type="text" id="dishName" placeholder="What dish would you like?">
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Special Ingredients</label>
+                    <input type="text" id="ingredients" placeholder="Any specific ingredients?">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" placeholder="Any special instructions..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <section class="section" style="background: #F0FAF7;">
+    <div class="container">
+        <h2 class="section-title">Popular Items</h2>
+        <div class="carousel-container">
+            <button class="carousel-nav prev" id="prevBtn">‹</button>
+            <div class="carousel" id="carousel">
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8fDA%3D" alt="Home made pizza">
+                    <div class="card-content">
+                        <h3 class="card-title">Home made pizza</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.7
+                                <span>(50-79 min)</span>
+                            </div>
+                            <div class="card-price">₹190</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Home made pizza')">+</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://t3.ftcdn.net/jpg/01/39/30/18/360_F_139301819_Ip1WMIHLc6vtFjkXNkuhiVw3FqaXUZyd.jpg" alt="Tandoori Chicken">
+                    <div class="card-content">
+                        <h3 class="card-title">Tandoori Chicken</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.3
+                                <span>(29 min)</span>
+                            </div>
+                            <div class="card-price">₹184</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Tandoori Chicken')">+</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://img.freepik.com/premium-photo/chilli-chicken-dry-is-popular-indochinese-dish-chicken-hakka-chinese-heritage_1095465-4592.jpg" alt="Chilli Chicken">
+                    <div class="card-content">
+                        <h3 class="card-title">Chilli Chicken</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.1
+                                <span>(30 min)</span>
+                            </div>
+                            <div class="card-price">₹116</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Chilli Chicken')">+</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/031/415/202/small_2x/top-view-tasty-food-chicken-tikka-plate-isolated-on-a-black-background-ai-generated-photo.jpg" alt="Butter Chicken">
+                    <div class="card-content">
+                        <h3 class="card-title">Butter Chicken</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.8
+                                <span>(25 min)</span>
+                            </div>
+                            <div class="card-price">₹289</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Butter Chicken')">+</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://media.istockphoto.com/id/1319621835/photo/gosht-or-lamb-biryani-prepared-in-basmati-rice-served-with-yogurt-dip-in-terracotta-bowl.jpg?s=612x612&w=0&k=20&c=uH2RcMRrG5CTpqX5akuoKUEfupSCXU9_t0qzdXQtW_I=" alt="Mutton Biryani">
+                    <div class="card-content">
+                        <h3 class="card-title">Mutton Biryani</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.7
+                                <span>(40 min)</span>
+                            </div>
+                            <div class="card-price">₹399</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Mutton Biryani')">+</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="discount-tag">50%</div>
+                    <img src="https://t3.ftcdn.net/jpg/06/02/36/78/360_F_602367899_H3lRqFrrsLrMeCHlW8s2yNkL6yQoD4O7.jpg" alt="Chicken Burger">
+                    <div class="card-content">
+                        <h3 class="card-title">Chicken Burger</h3>
+                        <div class="card-details">
+                            <div class="card-rating">
+                                ★ 4.6
+                                <span>(20 min)</span>
+                            </div>
+                            <div class="card-price">₹249</div>
+                        </div>
+                        <button class="add-button" onclick="itempopup('Chicken Burger')">+</button>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav next" id="nextBtn">›</button>
+            <button class="request-dish-btn" onclick="openRequestModal()">Request a Dish</button>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">We are providing best</h2>
+            <h2>home cooked food delivery service.</h2>
+            <p>Away from home and craving the tasty homemade recipes?</p>
+            <p> Choose from a selection of our delicious home cooked dishes</p>
+            <div class="video-container">
+                <video id="mainVideo" poster="https://wallpapers.com/images/hd/food-4k-xlm51q9ps1vgpd12.jpg">
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="play-overlay" id="playButton" onclick="toggleVideo()">▶</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <div class="text-heading">
+                        <h2>Do you have a question</h2> 
+                        <h2>or want to become a seller?</h2>
+                        <p>Fill this form and our manager will contact you next 48 hours.</p>
+                    </div>
+                    <div class="newsletter-form">
+                        <td rowspan="2" colspan="2">
+                            <input type="text" placeholder="Your Name">
+                            <input type="email" placeholder="Your email">
+                        </td>
+                    </div>
+                    <div class="newsletter-form1">
+                        <textarea placeholder="Your message"></textarea>
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+                <div class="newsletter-image">
+                    <img src="./Assests/Food_delivery_cute_man_riding_motorcycles_cartoon_art_illustration 2.png" style="height:350px" alt="Delivery Person">
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1rem;"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <header class="header">
+        <div class="logo">JTGeats</div>
+        <nav>
+            <ul class="nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="header-icon">
+                <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.14h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                </svg>
+            </div>
+            <div class="header-icon">
+                <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.75 2.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.5 1.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Request Dish Modal -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Request a Dish</h3>
+                <button class="close-btn" onclick="closeRequestModal()">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="dishName">Dish Name</label>
+                    <input type="text" id="dishName" placeholder="Enter dish name">
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Your Name</label>
+                    <input type="text" id="customerName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone</label>
+                    <input type="tel" id="customerPhone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" placeholder="Any special requests or dietary requirements..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeRequestModal()">Cancel</button>
+                    <button type="button" class="btn-submit" onclick="submitRequest()">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const totalItems = carouselItems.length;
+        let currentIndex = 0;
+        let slidesToShow = window.innerWidth > 768 ? 3 : 1;
+        let autoSlideInterval;
+
+        function updateCarousel() {
+            const itemWidth = carouselItems[0].offsetWidth + 24; // item width + gap
+            const maxIndex = totalItems - slidesToShow;
+            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+            
+            carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            
+            prevBtn.classList.toggle('disabled', currentIndex === 0);
+            nextBtn.classList.toggle('disabled', currentIndex >= maxIndex);
+        }
+
+        function slideNext() {
+            if (currentIndex < totalItems - slidesToShow) {
+                currentIndex++;
+                updateCarousel();
+            } else {
+                currentIndex = 0;
+                updateCarousel();
+            }
+        }
+
+        function slidePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        }
+
+        function startAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(slideNext, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        prevBtn.addEventListener('click', () => {
+            slidePrev();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            slideNext();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        window.addEventListener('resize', () => {
+            slidesToShow = window.innerWidth > 768 ? 3 : 1;
+            currentIndex = 0;
+            updateCarousel();
+        });
+
+        updateCarousel();
+        startAutoSlide();
+
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+
+        function openRequestModal() {
+            document.getElementById('requestModal').classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('requestModal').classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function submitRequest() {
+            alert('Request submitted successfully!');
+            closeRequestModal();
+        }
+
+        function toggleVideo() {
+            const video = document.getElementById('mainVideo');
+            const playButton = document.getElementById('playButton');
+            
+            if (video.paused) {
+                video.play();
+                playButton.style.display = 'none';
+            } else {
+                video.pause();
+                playButton.style.display = 'flex';
+            }
+        }
+
+        function addToCart(dishName) {
+            alert(`${dishName} added to cart!`);
+        }
+         function itempopup() {
+            alert('item added successfully!');
+            closeRequestModal();
+        }
+
+        document.getElementById('mainVideo').addEventListener('pause', function() {
+            document.getElementById('playButton').style.display = 'flex';
+        });
+
+        document.getElementById('mainVideo').addEventListener('play', function() {
+            document.getElementById('playButton').style.display = 'none';
+        });
+
+        document.getElementById('requestModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRequestModal();
+            }
+        });
+    </script>
+</body>
+</html>
